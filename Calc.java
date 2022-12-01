@@ -14,7 +14,7 @@ public class Calc {
         String name = sc.nextLine();
         String[] words = name.split(" ");
         if (words.length!=3) {
-            System.out.println("Строка не корректна");
+            System.out.println("throws Exception //т.к. Строка не корректна");
             System.exit(0);
         }
         a=conv(words[0]);
@@ -31,24 +31,24 @@ public class Calc {
                 break;
             case "/" :
                 if (b==0) {
-                    System.out.println("Разве на 0 делимся ????");
+                    System.out.println("throws Exception //т.к. Разве на 0 делимся ????");
                     System.exit(0);
                 }
                 a=a/b;
                 break;
             default:
-                System.out.println("Опа, а такой операции нету : "+words[1]);
+                System.out.println("throws Exception //т.к. Опа, а такой операции нету : "+words[1]);
                 System.exit(0);
         }
         if (rimsk) {
             if ((a<1) & (rimsk_kol==2)) {
-                System.out.print("no no no  ");
+                System.out.print("throws Exception //т.к. в римской системе нет отрицательных чисел");
                 System.exit(0);
             }
             if (rimsk_kol==2) {
                 System.out.print("Ответ : ");
                 System.out.println(toRoman(a));
-            } else { System.out.println("Не все римские или арабские, так не пойдет"); }
+            } else { System.out.println("throws Exception //т.к. используются одновременно разные системы счисления"); }
 
         } else {
             System.out.print("Ответ : ");
@@ -64,7 +64,7 @@ public class Calc {
         }
         catch (NumberFormatException e) {
             if (Arrays.binarySearch(numerals,Character.toString(ws[0]))<0) {
-                System.out.println("А тут не целое число у нас : " + s);
+                System.out.println("throws Exception //т.к. А тут не целое число у нас : " + s);
                 System.exit(0);
             }
             rimsk = true;
@@ -72,7 +72,7 @@ public class Calc {
             res = toArabic(s);
         }
         if ((res>10) || (res<1)) {
-            System.out.println("А на входе от 1 до 10 у нас ");
+            System.out.println("throws Exception //т.к. А на входе от 1 до 10 у нас ");
             System.exit(0);
         }
         return res;
@@ -114,3 +114,4 @@ public class Calc {
         return result;
     }
 }
+
