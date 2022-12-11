@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Calc {
@@ -6,12 +7,26 @@ public class Calc {
     public static int rimsk_kol = 0; // количество римских чисел
     private static int[] intervals={0, 1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};
     private static String[] numerals={"", "I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
+    private static String[] numerals_test={"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
 
     public static void main(String [] args) {
-        int a,b;
         Scanner sc = new Scanner(System.in);
         System.out.print("Ваша строка : ");
         String name = sc.nextLine();
+        telo(name);
+/* тестовая часть
+        for (int j=0;j<9;j++){
+            for (int i=1;i<9;i++) {
+                telo(numerals_test[i]+" + "+numerals_test[j]);
+            }
+        }
+
+ */
+    }
+    public static void telo(String name) {
+            int a,b;
+            rimsk = false;
+            rimsk_kol = 0;
         String[] words = name.split(" ");
         if (words.length!=3) {
             System.out.println("throws Exception //т.к. Строка не корректна");
@@ -42,7 +57,7 @@ public class Calc {
         }
         if (rimsk) {
             if ((a<1) & (rimsk_kol==2)) {
-                System.out.print("throws Exception //т.к. в римской системе нет отрицательных чисел");
+                System.out.print("throws Exception //т.к. в римской системе нет таких чисел");
                 System.exit(0);
             }
             if (rimsk_kol==2) {
@@ -58,13 +73,16 @@ public class Calc {
 
     public static int conv(String s) {
         char[] ws= s.toCharArray();
-        int res;
+        int res,tt=0;
         try {
             res = Integer.parseInt(s);
         }
         catch (NumberFormatException e) {
-            if (Arrays.binarySearch(numerals,Character.toString(ws[0]))<0) {
-                System.out.println("throws Exception //т.к. А тут не целое число у нас : " + s);
+            for (int kk=0;kk<14;kk++) {
+                if(Objects.equals(numerals[kk],Character.toString(ws[0]))) { tt++; break;}
+            }
+            if (tt==0) {
+                System.out.println("throws Exception //т.к. А тут непонятно какое число у нас : " + s);
                 System.exit(0);
             }
             rimsk = true;
@@ -114,4 +132,3 @@ public class Calc {
         return result;
     }
 }
-
