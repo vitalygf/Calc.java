@@ -20,8 +20,7 @@ public class Calc {
                 telo(numerals_test[i]+" + "+numerals_test[j]);
             }
         }
-
- */
+*/
     }
     public static void telo(String name) {
             int a,b;
@@ -74,14 +73,21 @@ public class Calc {
     public static int conv(String s) {
         char[] ws= s.toCharArray();
         int res,tt=0;
+//        System.out.println(ws.length);
         try {
             res = Integer.parseInt(s);
         }
         catch (NumberFormatException e) {
-            for (int kk=0;kk<14;kk++) {
-                if(Objects.equals(numerals[kk],Character.toString(ws[0]))) { tt++; break;}
+            for (int kkt=0;kkt< ws.length;kkt++) {
+                for (int kk = 0; kk < 14; kk++) {
+                    if (Objects.equals(numerals[kk], Character.toString(ws[kkt]))) {
+                        tt++;
+                        break;
+                    }
+//            System.out.println(ws[kkt]);
+                }
             }
-            if (tt==0) {
+            if ((tt==0) || (tt!= ws.length)){
                 System.out.println("throws Exception //т.к. А тут непонятно какое число у нас : " + s);
                 System.exit(0);
             }
